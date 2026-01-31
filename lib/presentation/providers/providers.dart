@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../data/repositories/supabase_repositories.dart';
 import '../../domain/repositories/interfaces.dart';
 import '../../domain/usecases/metrics_usecases.dart';
+import '../../domain/entities/entities.dart';
 
 // Supabase Client Provider
 final supabaseClientProvider = Provider<SupabaseClient>((ref) => Supabase.instance.client);
@@ -30,4 +31,10 @@ final userProfileProvider = FutureProvider((ref) async {
   final user = await ref.watch(currentUserProvider.future);
   if (user == null) return null;
   return ref.watch(metricsRepositoryProvider).getProfile(user.id);
+});
+
+final metricsHistoryProvider = FutureProvider<List<BodyMetrics>>((ref) async {
+  final user = await ref.watch(currentUserProvider.future);
+  if (user == null) return [];
+  return ref.watch(metricsRepositoryProvider).getMetricsHistory(user.id);
 });

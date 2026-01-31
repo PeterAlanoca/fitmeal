@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/providers.dart';
 import 'register_page.dart';
-import 'profile_setup_page.dart';
+import 'evaluation_page.dart';
 import 'dashboard_page.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -38,7 +38,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         if (profile == null) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const ProfileSetupPage()),
+            MaterialPageRoute(builder: (context) => const EvaluationPage()),
           );
         } else {
           Navigator.pushReplacement(
